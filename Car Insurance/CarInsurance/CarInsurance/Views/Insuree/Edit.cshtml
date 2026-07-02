@@ -1,0 +1,43 @@
+﻿@model CarInsurance.Models.Insuree
+@{
+    Layout = null;
+    ViewBag.Title = "Edit Profile";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="https://cloudflare.com" />
+</head>
+<body class="container" style="padding-top: 30px;">
+
+    <h2>Edit Insuree Profile</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-horizontal">
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">Date of Birth</label>
+                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <!-- Keep all other fields intact as hidden parameters so they don't erase on save -->
+            @Html.HiddenFor(m => m.FirstName) @Html.HiddenFor(m => m.LastName)
+            @Html.HiddenFor(m => m.EmailAddress) @Html.HiddenFor(m => m.CarYear)
+            @Html.HiddenFor(m => m.CarMake) @Html.HiddenFor(m => m.CarMake)
+            @Html.HiddenFor(m => m.DUI) @Html.HiddenFor(m => m.SpeedingTickets)
+            @Html.HiddenFor(m => m.CoverageType) @Html.HiddenFor(m => m.Quote)
+
+            <input type="submit" value="Save Changes" class="btn btn-success" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+
+</body>
+</html>
+
+
+
